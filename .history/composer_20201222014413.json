@@ -1,0 +1,25 @@
+{
+    "name": "ramdanriawan/db",
+    "type": "library",
+    "description": "database php 7.3.4",
+    "keywords": ["dan","db", "db", "ramdanriawan"],
+    "homepage": "https://github.com/ramdanriawan/db",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ramdan Riawan",
+            "email": "ramdanriawan3@gmail.com",
+            "homepage": "https://github.com/ramdanriawan/db",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "RamdanRiawan\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}

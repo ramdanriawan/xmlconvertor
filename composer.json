@@ -1,0 +1,25 @@
+{
+    "name": "ramdanriawan/xmlconvertor",
+    "type": "library",
+    "description": "database php 7.3.4",
+    "keywords": ["xml","convertor", "xmlconvertor", "ramdanriawan"],
+    "homepage": "https://github.com/ramdanriawan/xmlconvertor",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ramdan Riawan",
+            "email": "ramdanriawan3@gmail.com",
+            "homepage": "https://github.com/ramdanriawan/xmlconvertor",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "RamdanRiawan\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
