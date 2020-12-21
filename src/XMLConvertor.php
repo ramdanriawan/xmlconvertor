@@ -2,13 +2,20 @@
 
 namespace RamdanRiawan;
 
+use SimpleXMLElement;
+
 class XMLConvertor
 {
-    private $xmlData;
+    private $XMLData;
 
-    public function __construct($xmlData)
+    public function __construct($XMLData = null)
     {
-        $this->xmlData = $xmlData;
+        $this->$XMLData = $XMLData;
+    }
+
+    public function setXMLData($XMLData)
+    {
+        $this->XMLData = $XMLData;
     }
 
     private function domNodesToArray(array $tags, \DOMXPath $xpath)
@@ -58,7 +65,7 @@ class XMLConvertor
     public function toArray()
     {
         $doc = new \DOMDocument();
-        $doc->loadXML($this->xmlData);
+        $doc->loadXML($this->XMLData);
         $xpath = new \DOMXPath($doc);
         $tags  = $doc->childNodes ? iterator_to_array($doc->childNodes) : [];
 
@@ -70,16 +77,29 @@ class XMLConvertor
 
         return json_encode($this->toArray());
     }
+
+    public function arrayToXML($data, $root = null){
+        $xml = new SimpleXMLElement($root ? '<' . $root . '/>' : '<root/>');
+        array_walk_recursive($data, function($value, $key)use($xml){
+            $xml->addChild($key, $value);
+        });
+        return $xml->asXML();
+    }
+
+    public function jsonToXML($data)
+    {
+
+        return $this->arrayToXML(json_decode($data, true));
+    }
 }
 
-$xmlConvertor = new XMLConvertor('
-    <body>
-        <div>
-            <span status="old">Trooper</span>
-            <span status="old">Ultrablock</span>
-            <span status="new">Bike</span>
-        </div>
-    </body>
-');
+// $XMLConvertor = new XMLConvertor();
 
-print_r($xmlConvertor->toJson());
+// echo $XMLConvertor->arrayToXML([
+//     'nama' => 'ramdan riawan',
+//     'umur' => 17,
+//     'kelas' => [
+//         'nama' => 7,
+//         'jumlah' => 35
+//     ]
+// ]);
